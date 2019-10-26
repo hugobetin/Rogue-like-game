@@ -20,14 +20,14 @@ Remarques:
 De plus, sa simplicité de lecture me permet de me concentrer sur l'aspect algorithmique du projet.
 J'utilise Pyzo comme environnement de travail.
 
--le fichier 'Visualisation IA' sert de main, il avait un but plus spécifique au départ mais j'ai fini par y intégrer la boucle principale.
+-le fichier 'Visualisation IA.py' sert de main, il avait un but plus spécifique au départ mais j'ai fini par y intégrer la boucle principale.
 Il suffit donc de le lire pour lancer le jeu (attention tout de même au point suivant).
 
--dans le fichier 'Visualisation IA', l'utilisation de la bibliothèque os n'est pas toujours nécessaire.
+-dans le fichier 'Visualisation IA.py', l'utilisation de la bibliothèque os n'est pas toujours nécessaire.
 Personellement, je préfère la rajouter pour être sûr que le bon fichier est chargé.
 A modifier selon vos préférences.
 
--Le document 'Organisation des données' réunit la description des différents raccourcis utilisés pour transmettre des données.
+-Le document 'Organisation des données.docx' réunit la description des différents raccourcis utilisés pour transmettre des données.
 Par exemple, il permet d'interpréter la carte sous forme de grille de chiffre.
 
 -J'ai tendance à oublier de corriger les commentaires déjà écrits.
