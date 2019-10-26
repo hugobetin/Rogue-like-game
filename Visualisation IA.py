@@ -1,6 +1,6 @@
 import pygame
 import os
-os.chdir("C:\\Users\\User\\Documents\\Programmes perso\\Digimon donjon mystère\\Programme")
+#os.chdir("C:\\Users\\User\\Documents\\Programmes perso\\Digimon donjon mystère\\Programme")
 from IA import *
 import Donnees as dn
 from Map_generator import CreerEtage
