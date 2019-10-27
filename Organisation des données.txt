@@ -1,0 +1,11 @@
+Labels de carte :
+0 :mur
+1 :salle
+2 :couloir
+3 :escalier
+4 :perso
+5 :ennemi
+
+Labels des actions :
+R : rien
+x/y +/- : avancer/reculer selon l’axe horizontal/ vertical
