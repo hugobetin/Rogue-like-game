@@ -1,6 +1,7 @@
 import numpy as np
 
 #grille_vide contient juste les murs (0), les salles (1), les couloirs (0) et l'escalier (3), c'est-à-dire ce qui ne change pas durant l'exploration de l'étage
+#Les bandes de 0 de largeur 3 sont là pour l'affichage graphique.
 grille_vide=np.array(  [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -53,8 +54,11 @@ grille=np.array([[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]])
     
     
-#murs est une carte indiquant les murs, il sert à tracer la mini-map
-#Pour l'instant, ne fonctionne qu'avec la carte préfabriquée
+#murs est une carte indiquant les murs, il sert à tracer la carte.
+#Pour l'instant, ne fonctionne qu'avec la carte préfabriquée.
+#Si la carte a des dimmensions (6+width,6+height), murs a des dimmensions (2*(width+1),2*(height+1).
+#La case grille[3+i,3+j] est associée à la case murs[1+2*i][1+2*j]. Les arrêtes sont les 4 cases voisines(murs[2*i][1+2*j],murs[3+2*i][1+2*j],murs[1+2*i][2*j],murs[1+2*i][3+2*j]).
+#0 indique qu'il n'y a rien, 1 indique qu'il y a un mur
 murs=np.zeros((2*19,2*22))
 for i in range(18):
     for j in range(21):
@@ -68,14 +72,13 @@ for i in range(18):
             if not grille[3+i,4+j]:
                 murs[1+2*i][2+2*j]=1
                 
-#vus est une carte des zones entrées au moins une fois dans le champs de vision. Il sert à savoir quelle partie de la mini-map révéler
+#vus est une carte des zones entrées au moins une fois dans le champs de vision. Il sert à savoir quelle partie de la carte révéler.
+#Pour l'instant, ne fonctionne qu'avec la carte préfabriquée.
+#vus a le même format que murs. 0 indique une case non-vue, 1 indique une case vue.
 vus=np.zeros((2*25,2*28))
 
-#ennemis contient les infos de chaque ennemi, à savoir sa position, sa position précédente et sa cible du moment
+#ennemis contient les infos de chaque ennemi, à savoir sa position, sa position précédente et sa cible du moment (pour l'instant).
 ennemis=[[[3,3],[0,0],[-1,-1]],[[3,22],[0,0],[-1,-1]]]
 
-#joueur contient la position du joueur
+#joueur contient les infos du joueur, à savoir sa position (pour l'instant).
 joueur=[17,3]
-
-
-
