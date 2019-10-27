@@ -3,7 +3,7 @@ import random as rd
 import Donnees as dn
 
 ##IA
-#Rq: pour désigner un PNJ (allié ou ennemi), j'utilise pion. Pour le joueur, j'utilise personnage. Ennemi est à comprendre en contexte, selon le point de vue.
+#Rq: pour désigner un PNJ (allié ou ennemi), j'utilise pion. Pour le joueur, j'utilise personnage ou joueur. Ennemi est à comprendre en contexte, selon le point de vue.
 
 
 #Sur les 4 mouvements possibles, cette fonction indique lesquels doivent être tentés et selon quel degré de priorité
@@ -223,15 +223,10 @@ def suivre_instruction(ennemi,instruction):
     dn.ennemis[ennemi][1]=[x_prec,y_prec]
 
 
-"""grille de code des actions:
-r: ne rien faire (en pratique, ce sera assez rare. sans les attaques, ça arrivera si il y a un ennemi juste à côté)
-x/y: mouvement selon l'axe désigné
-    +/-:sens du déplacement
-
-"""
 
 ##Données
 
+#Cette fonction sert à initier Donnnees.py.
 def init():
     #grille_vide contient juste les murs (0), les salles (1), les couloirs (0) et l'escalier (3), c'est-à-dire ce qui ne change pas durant l'exploration de l'étage
     dn.grille_vide=np.array(   [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
