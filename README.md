@@ -27,7 +27,7 @@ Il suffit donc de le lire dans un IDE python pour lancer le jeu (après avoir in
 Personellement, je préfère la rajouter pour être sûr que le bon répertoire de travail est utilisé.
 A modifier selon vos besoins ou préférences avec le chemin du dossier contenant les fichiers.
 
--Le document 'Organisation des données.docx' réunit la description des différents raccourcis utilisés pour transmettre des données.
+-Le document 'Organisation des données.txt' réunit la description des différents raccourcis utilisés pour transmettre des données.
 Par exemple, il permet d'interpréter la carte sous forme de grille de chiffre.
 
 -J'ai tendance à oublier de corriger les commentaires déjà écrits.
