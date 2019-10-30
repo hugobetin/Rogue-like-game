@@ -1,5 +1,7 @@
 import numpy as np
 
+#Les données écrites ici ont servi de test. Les vraies données sont pour l'instant écrites par  IA.py dans ce fichier.
+
 #grille_vide contient juste les murs (0), les salles (1), les couloirs (0) et l'escalier (3), c'est-à-dire ce qui ne change pas durant l'exploration de l'étage
 #Les bandes de 0 de largeur 3 sont là pour l'affichage graphique.
 grille_vide=np.array(  [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
