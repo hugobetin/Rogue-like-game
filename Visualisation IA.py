@@ -8,6 +8,7 @@ from Map_generator import creer_etage
 
 ##Constante d'affichage et de fonctionnement
 #Ces constantes servent pour le bon fonctionnement de pygame, et pour l'affichage de l'écran.
+#Certaines constantes sont écrites en majuscule, c'était la typographie utilisée dans les templates pygame.
 
 #Voici les couleurs que j'utilise pour l'instant. Elles sont codées en RGB.
 BLACK    = (   0,   0,   0)
@@ -31,6 +32,10 @@ clock = pygame.time.Clock()                 #Cette ligne crée une horloge.
 
 screen.set_colorkey(BLACK)                  #Cette ligne indique que la couleur de fond de l'écran est le noir.
 
+#Ces variables indiquent la taille de la carte
+width_map=20
+height_map=20
+
 ##Variable d'action
 
 done = False                    #done indique quand la fenêtre doit se fermer.
@@ -39,11 +44,18 @@ droite=False
 gauche=False
 haut=False
 bas=False
+#mvt indique si le joueur a bougé pendant ce tour
+mvt=False
 
-init()              #init vient de IA.py, elle remet à zéro les données.
+init(width_map,height_map)              #init vient de IA.py, elle remet à zéro les données.
                     #Sans cette fonction, fermer et ouvrir la fenêtre font reprendre le jeu au même point.
 
 while not done:
+    #Màj automatique: si le joueur est sur un escalier, un nouvel étage est généré
+    if dn.grille_vide[tuple(dn.joueur)]==3:
+        init(width_map,height_map)
+    
+    
     #Evènements: Cette boucle traite les entrées de clavier et de souris et les stocke.
     for event in pygame.event.get():
         if event.type == pygame.QUIT:       #Cliquer sur fermer (indispensable pour fermer la fenêtre).
@@ -69,32 +81,35 @@ while not done:
                 bas=False
     #Actualiser le jeu
     
-    #Si l'une des commandes est pressée et que la direction est libre, avancer dans cette direction (ordre arbitraire). Les ennemis bougent alors aussi d'une case.
+    #Si l'une des commandes est pressée et que la direction est libre, avancer dans cette direction (ordre arbitraire). Noter si un mouvement a été effectué.
     if droite and dn.grille[dn.joueur[0],[dn.joueur[1]+1]] in [1,2,3]:
         dn.grille[dn.joueur[0],[dn.joueur[1]+1]]=4
         dn.grille[dn.joueur[0],[dn.joueur[1]]]=dn.grille_vide[dn.joueur[0]][dn.joueur[1]]
         dn.joueur[1]+=1
-        for ennemi in range(len(dn.ennemis)):
-            suivre_instruction(ennemi,choix_action(ennemi)) 
-    if gauche and dn.grille[dn.joueur[0],[dn.joueur[1]-1]] in [1,2,3]:
+        mvt=True
+    elif gauche and dn.grille[dn.joueur[0],[dn.joueur[1]-1]] in [1,2,3]:
         dn.grille[dn.joueur[0],[dn.joueur[1]-1]]=4
         dn.grille[dn.joueur[0],[dn.joueur[1]]]=dn.grille_vide[dn.joueur[0]][dn.joueur[1]]
         dn.joueur[1]+=-1
-        for ennemi in range(len(dn.ennemis)):
-            suivre_instruction(ennemi,choix_action(ennemi))
-    if haut and dn.grille[dn.joueur[0]-1,[dn.joueur[1]]] in [1,2,3]:
+        mvt=True
+    elif haut and dn.grille[dn.joueur[0]-1,[dn.joueur[1]]] in [1,2,3]:
         dn.grille[dn.joueur[0]-1,[dn.joueur[1]]]=4
         dn.grille[dn.joueur[0],[dn.joueur[1]]]=dn.grille_vide[dn.joueur[0]][dn.joueur[1]]
         dn.joueur[0]+=-1
-        for ennemi in range(len(dn.ennemis)):
-            suivre_instruction(ennemi,choix_action(ennemi)) 
-    if bas and dn.grille[dn.joueur[0]+1,[dn.joueur[1]]] in [1,2,3]:
+        mvt=True
+    elif bas and dn.grille[dn.joueur[0]+1,[dn.joueur[1]]] in [1,2,3]:
         dn.grille[dn.joueur[0]+1,[dn.joueur[1]]]=4
         dn.grille[dn.joueur[0],[dn.joueur[1]]]=dn.grille_vide[dn.joueur[0]][dn.joueur[1]]
         dn.joueur[0]+=1
+        mvt=True
+    else:
+        mvt=False
+    
+    #Si le joueur a bougé, les ennemis bougent aussi
+    if mvt:
         for ennemi in range(len(dn.ennemis)):
             suivre_instruction(ennemi,choix_action(ennemi))
-    
+        
     
     #Actualiser la carte:
     #On vérifie si on est dans une salle
@@ -147,8 +162,8 @@ while not done:
         pygame.draw.circle(screen, RED, [int((e[0][1]-y+3+0.5)*75), int((e[0][0]-x+3+0.5)*75)],int(0.5*75))
     
     #Enfin, on dessine la carte.
-    for i in range(19):
-        for j in range(22):
+    for i in range(width_map+1):
+        for j in range(height_map+1):
             #Pour chaque case, on vérifie s'il y a un escalier. S'il y en a un, on le marque d'un carré bleu ciel
             if dn.grille_vide[3+i,3+j]==3 and dn.vus[1+2*(3+i),1+2*(3+j)]:
                 pygame.draw.line(screen,L_BLUE,(25+1+j*5,25+1+i*5),(30-1+j*5,25+1+i*5))
