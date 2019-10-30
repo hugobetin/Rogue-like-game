@@ -1,5 +1,6 @@
 import numpy as np
 import random as rd
+import Donnees as dn
 
 #Utilisation de BSP: on scinde recursivement la map en feuilles jusqu'à une certaine taille et on remplit chaque feuille
 
@@ -176,7 +177,19 @@ def placer_escalier(root,carte):
 """
 placer_escalier(root,carte)
 """
+##Placer le joueur
+#Le principe est le même que pour placer un escalier. Le joueur peut même commencer sur l'escalier.
 
+def placer_joueur(root,carte):
+    salle=(root.choisir_salle())[0]
+    x=rd.randint(salle[0],salle[0]+salle[2]-1)
+    y=rd.randint(salle[1],salle[1]+salle[3]-1)
+    carte[x,y]=4
+    dn.joueur=[x+2,y+2]
+
+"""
+placer_joueur(root,carte)
+"""
 
 ##Creer un etage
 #Cette partie intègre toutes les parties précédentes en une fonction
@@ -184,18 +197,20 @@ placer_escalier(root,carte)
 
 def creer_etage(width_map, height_map):
     root,feuilles=creer_feuilles(width_map,height_map)
-    carte_vide=creer_salles(root,feuilles)
-    creer_couloirs(root,carte_vide)
-    placer_escalier(root,carte_vide)
+    carte=creer_salles(root,feuilles)
+    creer_couloirs(root,carte)
+    placer_escalier(root,carte)
     #On ajoute les bandes de 0 pour l'affichage
-    carte_vide=np.concatenate((np.zeros((height_map,2)),carte_vide,np.zeros((height_map,2))),axis=1)
+    carte_vide=np.concatenate((np.zeros((height_map,2)),carte,np.zeros((height_map,2))),axis=1)
     carte_vide=np.concatenate((np.zeros((2,width_map+4)),carte_vide,np.zeros((2,width_map+4))),axis=0)
-    return(carte_vide)
+    
+    placer_joueur(root,carte)
+    carte=np.concatenate((np.zeros((height_map,2)),carte,np.zeros((height_map,2))),axis=1)
+    carte=np.concatenate((np.zeros((2,width_map+4)),carte,np.zeros((2,width_map+4))),axis=0)
+    
+    return(carte_vide,carte)
 
 """
-carte=creer_etage(width_map,height_map)
+carte_vide,carte=creer_etage(width_map,height_map)
 print(carte)
 """
-
-
-
