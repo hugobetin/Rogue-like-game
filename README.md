@@ -10,10 +10,9 @@ pour l'utilisation du module pygame
 -https://gamedevelopment.tutsplus.com/tutorials/how-to-use-bsp-trees-to-generate-game-maps--gamedev-12268
 pour la génération d'étage, problème auquel je n'ai pas trouvé de solution seul.
 
-Dans l'état actuel, mon programme permet de faire se déplacer un personnage (rond jaune) dans un donjon prédéfini (sol marron, murs verts).
-Des ennemis (ronds rouges) dotés d'une intelligence basique explorent le donjon et suivent le joueur s'ils le voient.
-Le 'but' du joueur est d'atteindre un escalier (carré bleu), même s'il n'y a pour l'instant pas de victoire implémentée.
-Même si elle n'est pas encore intégrée au jeu, une fonction permettant de générer un étage aléatoire a été implémentée.
+Dans l'état actuel, mon programme permet de faire se déplacer un personnage (rond jaune) dans un donjon généré aléatoirement (sol marron, murs verts).
+Le 'but' du joueur est d'atteindre un escalier (carré bleu), qui l'amène à un nouvel étage. Il n'y a pas de fin.
+Même si elle n'est pas intégrée au jeu dans l'état actuel, une IA basique d'ennemi est implémentée et fonctionne en donjon fixe.
 
 Remarques:
 -je code en python car c'est le langage avec lequel je suis le plus familier.
@@ -23,9 +22,9 @@ J'utilise Pyzo comme environnement de travail.
 -le fichier 'Visualisation IA.py' sert de main, il avait un but plus spécifique au départ mais j'ai fini par y intégrer la boucle principale.
 Il suffit donc de le lire dans un IDE python pour lancer le jeu (après avoir installé les librairies nécessaires avec la commande 'pip install -r requirements.txt').
 
--dans le fichier 'Visualisation IA.py', l'utilisation de la fonction os.chdir n'est pas toujours nécessaire.
-Personellement, je préfère la rajouter pour être sûr que le bon répertoire de travail est utilisé.
-A modifier selon vos besoins ou préférences avec le chemin du dossier contenant les fichiers.
+-dans le fichier 'Visualisation IA.py', l'utilisation de la fonction os.chdir n'est pas toujours nécessaire selon l'environnement de travail.
+Je l'utilise car sinon le programme ne se lance pas toujours sur mon ordinateur.
+A modifier selon vos besoins ou préférences avec le chemin du dossier contenant tous les fichiers '.py'.
 
 -Le document 'Organisation des données.txt' réunit la description des différents raccourcis utilisés pour transmettre des données.
 Par exemple, il permet d'interpréter la carte sous forme de grille de chiffre.
