@@ -35,6 +35,7 @@ Je vais faire de mon mieux pour faire attention, mais ne soyez pas surpris si un
 
 
 Etat du jeu et mises à jour:
+
 31/10/2019:
 
 -Le joueur peut explorer un nombre infini d'étage, le jeu n'a pas encore de fin.
