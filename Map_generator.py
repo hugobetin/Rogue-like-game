@@ -14,8 +14,8 @@ class Leaf:
         self.x,self.y=X,Y        #Position de la feuille (coin sup gauche)
         self.width=width         #Largeur de la feuille
         self.height=height       #Longueur de la feuille
-        self.left_child=None      #L'enfant gauche de la feuille (s'il y en a un), aussi une feuille
-        self.right_child=None     #L'enfant droit de la feuille (s'il y en a un), aussi une feuille
+        self.left_child=None     #L'enfant gauche de la feuille (s'il y en a un), aussi une feuille
+        self.right_child=None    #L'enfant droit de la feuille (s'il y en a un), aussi une feuille
         self.room=None           #La salle de la feuille (s'il y en a une), au format [x,y,width,height]
         self.min_feuille=6               #Taille min d'une feuille, emplacement min pour une coupure
     
@@ -190,7 +190,26 @@ def placer_joueur(root,carte):
 """
 placer_joueur(root,carte)
 """
+##Placer les ennemis
+#Le principe est le même que pour placer un joueur. La différence est que l'on peut placer plusieurs ennemis.
 
+def placer_ennemis(root,carte,nombre_ennemis):
+    dn.ennemis=[]
+    for n in range(nombre_ennemis):
+        salle=(root.choisir_salle())[0]
+        x=rd.randint(salle[0],salle[0]+salle[2]-1)
+        y=rd.randint(salle[1],salle[1]+salle[3]-1)
+        #Tant que la case choisie n'est pas libre, on retire une case
+        #On suppose qu'une salle n'est jamais entièrement pleine
+        while carte[x,y] not in [1,3]:
+            x=rd.randint(salle[0],salle[0]+salle[2]-1)
+            y=rd.randint(salle[1],salle[1]+salle[3]-1)
+        carte[x,y]=5
+        dn.ennemis.append([[x+2,y+2],[0,0],[-1,-1]])
+
+"""
+placer_ennemis(root,carte,2)
+"""
 ##Creer un etage
 #Cette partie intègre toutes les parties précédentes en une fonction
 #Pour l'instant, ses seuls paramètres sont les dimmensions de l'étage
@@ -205,6 +224,7 @@ def creer_etage(width_map, height_map):
     carte_vide=np.concatenate((np.zeros((2,width_map+4)),carte_vide,np.zeros((2,width_map+4))),axis=0)
     
     placer_joueur(root,carte)
+    placer_ennemis(root,carte,2)
     carte=np.concatenate((np.zeros((height_map,2)),carte,np.zeros((height_map,2))),axis=1)
     carte=np.concatenate((np.zeros((2,width_map+4)),carte,np.zeros((2,width_map+4))),axis=0)
     
