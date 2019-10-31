@@ -1,7 +1,33 @@
 import numpy as np
 
-#Les données écrites ici ont servi de test. Les vraies données sont pour l'instant écrites par  IA.py dans ce fichier.
+#Ce fichier doit contenir toutes les variables globales utilisées, qu'elles soient constantes ou variable.
+#Il ne les contient pas encore toutes car les tests sont plus simples avec des variables dans les fichiers concernés. Je les déplace au fur et à mesure que le projet avance.
 
+##Constantes
+#Ces variables indiquent la taille de la carte
+width_map=20
+height_map=20
+
+#Ces variables servent à l'affichage, elles donnent la taille de la représentation d'une case et le nombre de cases affichées (en hauteur et largeur, l'écran est pour l'instant carré).
+taille_case=75
+taille_ecran=7
+
+#Voici les couleurs que j'utilise pour l'instant. Elles sont codées en RGB.
+BLACK    = (   0,   0,   0)
+WHITE    = ( 255, 255, 255)
+GREY     = ( 124, 124, 124)
+YELLOW   = ( 255, 255,   0)
+RED      = ( 255,   0,   0)
+GREEN    = (   0, 200,   0)
+L_BLUE   = (   0, 255, 255)
+D_BLUE   = (   0,  90, 180)
+BEIGE    = ( 230, 200, 100)
+
+#palette contient la palette du donjon, à savoir la couleur des murs et du sol
+palette=[GREEN,BEIGE]
+
+##Variables (valeurs de test)
+#Les valeurs écrites ici sont à titre indicatif, les vraies valeurs sont dans l'initialisation (dans IA.py).
 #grille_vide contient juste les murs (0), les salles (1), les couloirs (0) et l'escalier (3), c'est-à-dire ce qui ne change pas durant l'exploration de l'étage
 #Les bandes de 0 de largeur 3 sont là pour l'affichage graphique.
 grille_vide=np.array(  [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
