@@ -10,9 +10,10 @@ pour l'utilisation du module pygame
 -https://gamedevelopment.tutsplus.com/tutorials/how-to-use-bsp-trees-to-generate-game-maps--gamedev-12268
 pour la génération d'étage, problème auquel je n'ai pas trouvé de solution seul.
 
-Dans l'état actuel, mon programme permet de faire se déplacer un personnage (rond jaune) dans un donjon généré aléatoirement (sol marron, murs verts).
-Le 'but' du joueur est d'atteindre un escalier (carré bleu), qui l'amène à un nouvel étage. Il n'y a pas de fin.
-Même si elle n'est pas intégrée au jeu dans l'état actuel, une IA basique d'ennemi est implémentée et fonctionne en donjon fixe.
+Le concept de mon jeu est le suivant: un personnage se déplace dans un donjon généré aléatoirement.
+A chaque étage, il y a un escalier permettant d'accéder à l'étage suivant, et des ennemis.
+Le but du joueur est d'atteindre le fond du donjon.
+Chaque étage est organisé en grille et fonctionne au tour par tour: les ennemis se déplacent uniquement en même temps que le joueur.
 
 Remarques:
 -je code en python car c'est le langage avec lequel je suis le plus familier.
@@ -31,3 +32,11 @@ Par exemple, il permet d'interpréter la carte sous forme de grille de chiffre.
 
 -J'ai tendance à oublier de corriger les commentaires déjà écrits.
 Je vais faire de mon mieux pour faire attention, mais ne soyez pas surpris si un commentaire décrit un comportement qui ne s'applique pas.
+
+
+Etat du jeu et mises à jour:
+31/10/2019:
+-Le joueur peut explorer un nombre infini d'étage, le jeu n'a pas encore de fin.
+-A chaque étage, une carte est créée et le joueur est placé dedans aléatoirement.
+-Il y a aussi 2 ennemis qui suivent le joueur s'ils le voient.
+-Les graphismes sont très simples: carrés pour les cases, ronds pour les personnages, et une mini-carte de l'étage en cours (ce qui a déjà été découvert).
