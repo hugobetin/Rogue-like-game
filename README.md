@@ -36,7 +36,11 @@ Je vais faire de mon mieux pour faire attention, mais ne soyez pas surpris si un
 
 Etat du jeu et mises à jour:
 31/10/2019:
+
 -Le joueur peut explorer un nombre infini d'étage, le jeu n'a pas encore de fin.
+
 -A chaque étage, une carte est créée et le joueur est placé dedans aléatoirement.
+
 -Il y a aussi 2 ennemis qui suivent le joueur s'ils le voient.
+
 -Les graphismes sont très simples: carrés pour les cases, ronds pour les personnages, et une mini-carte de l'étage en cours (ce qui a déjà été découvert).
