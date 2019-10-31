@@ -81,7 +81,7 @@ def choix_action(ennemi):
     x_cible,y_cible=dn.ennemis[ennemi][2]
     
     #étape 1: le pion est-il dans une salle?
-    salle=(dn.grille_vide[x,y]==1)
+    salle=(dn.grille_vide[x,y] in [1,3])
     
     
     #étape 2, en salle: la salle + les murs sont vus
@@ -228,14 +228,14 @@ def suivre_instruction(ennemi,instruction):
 ##Données
 
 #Cette fonction sert à initier Donnees.py. Voir ce fichier pour plus de détails.
-def init(width_map, height_map):
+def init():
     #grille_vide contient juste ce qui ne change pas durant l'exploration de l'étage
-    dn.grille_vide,dn.grille=mg.creer_etage(width_map,height_map)
+    dn.grille_vide,dn.grille=mg.creer_etage(dn.width_map,dn.height_map)
     
     #murs est une carte indiquant les murs, il sert à tracer la mini-map
-    dn.murs=np.zeros((2*(width_map+1),2*(height_map+1)))
-    for i in range(width_map):
-        for j in range(height_map):
+    dn.murs=np.zeros((2*(dn.width_map+1),2*(dn.height_map+1)))
+    for i in range(dn.width_map):
+        for j in range(dn.height_map):
             if dn.grille[3+i,3+j]:
                 if not dn.grille[2+i,3+j]:
                     dn.murs[2*i][1+2*j]=1
@@ -247,6 +247,4 @@ def init(width_map, height_map):
                     dn.murs[1+2*i][2+2*j]=1
                     
     #vus est une carte des zones entrées au moins une fois dans le champs de vision. Il sert à savoir quelle partie de la mini-map révéler
-    dn.vus=np.zeros((2*(width_map+1+3),2*(height_map+1+3)))
-    #ennemis contient les infos de chaque ennemi, à savoir sa position, sa position précédente et sa cible du moment
-    dn.ennemis=[]
+    dn.vus=np.zeros((2*(dn.width_map+1+3),2*(dn.height_map+1+3)))
