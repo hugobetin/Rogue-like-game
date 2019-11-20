@@ -21,15 +21,15 @@ J'utilise Pyzo comme environnement de travail.
 
 -Pour lancer le jeu, il faut:
 
-  -télécharger tout les fichiers ici présent dans un même dossier (disons "Jeu").
+  *télécharger tout les fichiers ici présent dans un même dossier (disons "Jeu").
   
-  -placer le dossier "Alphabet" dans un dossier parent "Images".
+  *placer le dossier "Alphabet" dans un dossier parent "Images".
   
-  -Mettre l'addresse du dossier "Jeu" dans la variable "dossier" du fichier "Donnees.py" (penser à doubler les \ pour éviter que l'IDE y voit des commandes).
+  *Mettre l'addresse du dossier "Jeu" dans la variable "dossier" du fichier "Donnees.py" (penser à doubler les \ pour éviter que l'IDE y voit des commandes).
   
-    -lancer la commande 'pip install -r requirements.txt' si besoin pour installer les bibliothèques nécessaires.
+  *lancer la commande 'pip install -r requirements.txt' si besoin pour installer les bibliothèques nécessaires.
     
-    -lancer le fichier "Main.py".
+  *lancer le fichier "Main.py".
 
 -dans le fichier 'Main.py', j'utilise la fonction os.chdir pour indiquer à mon IDE où travailler.
 Elle n'est pas toujours nécessaire selon l'IDE où l'ordinateur.
