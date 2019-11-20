@@ -1,12 +1,15 @@
 import pygame
+
 #import os
 #os.chdir("C:\\Users\\User\\Documents\\Programmes perso\\Digimon donjon mystère\\Programme")
 #Ces 2 lignes ne sont pas toujours nécessaires selon votre logiciel. Mettez l'adresse du classeur contenant les fichiers.
 
+#Même si le chemin est dans la variable dossier (voir Donnees.py), le fichier n'a pas encore pu être importé. Le chemin entier est donc nécessaire ici.
+
+pygame.init()
+
 from IA import *
 import Donnees as dn
-from Map_generator import creer_etage
-import Graphismes as gr
 
 ##Constante d'affichage et de fonctionnement
 #Ces constantes servent pour le bon fonctionnement de pygame, et pour l'affichage de l'écran.
@@ -19,11 +22,12 @@ HEIGHT=dn.taille_ecran*dn.taille_case
 size=(WIDTH,HEIGHT)
 
 screen=pygame.display.set_mode(size)        #Cette ligne crée un écran à afficher.
-pygame.display.set_caption("Fan donjon mystère")           #Cette ligne donne un nom à la fenêtre.
+pygame.display.set_caption("Donjon mystère")           #Cette ligne donne un nom à la fenêtre.
 clock = pygame.time.Clock()                 #Cette ligne crée une horloge.
 
 screen.set_colorkey(dn.BLACK)                  #Cette ligne indique que la couleur de fond de l'écran est le noir.
 
+import Graphismes as gr             #Cette bibliothèque ne peut être appelée qu'après avoir initialisé screen
 
 ##Variable d'action
 
@@ -38,12 +42,13 @@ mvt=False
 
 init()              #init vient de IA.py, elle remet à zéro les données.
                     #Sans cette fonction, fermer et ouvrir la fenêtre font reprendre le jeu au même point.
+dn.etage=1
 
 while not done:
     #Màj automatique: si le joueur est sur un escalier, un nouvel étage est généré
     if dn.grille_vide[tuple(dn.joueur)]==3:
+        dn.etage+=1
         init()
-    
     
     #Evènements: Cette boucle traite les entrées de clavier et de souris et les stocke.
     for event in pygame.event.get():
@@ -104,7 +109,7 @@ while not done:
     #On vérifie si on est dans une salle
     salle=dn.grille_vide[dn.joueur[0],dn.joueur[1]] in [1,3]
     
-    #On adapte le champs de vision selon si l'on est dans une salle ou non
+    #On adapte le champs de vision selon si l'on est dans une salle ou non, et on actualise la vision
     if salle:       #Dans une salle, on voit la salle +1 case
         vision=[dn.joueur[0]-1,dn.joueur[0]+1,dn.joueur[1]-1,dn.joueur[1]+1]
         while dn.grille_vide[vision[0],dn.joueur[1]] in [1,3]:
@@ -116,20 +121,21 @@ while not done:
         while dn.grille_vide[dn.joueur[0],vision[3]] in [1,3]:
             vision[3]+=1
             
-    else:           #Dans un couloir, on voit à 2 cases
-        vision[0]=dn.joueur[0]-2
-        vision[1]=dn.joueur[0]+2
-        vision[2]=dn.joueur[1]-2
-        vision[3]=dn.joueur[1]+2
+        #On note comme vue chaque case du champs de vision et ses arrêtes(voir Donnees.py)
+        for i in range(vision[0],vision[1]+1):
+            for j in range(vision[2],vision[3]+1):
+                dn.vus[1+2*i,1+2*j]=1
+                dn.vus[1+2*i,2*j]=1
+                dn.vus[1+2*i,2+2*j]=1
+                dn.vus[2*i,1+2*j]=1
+                dn.vus[2+2*i,1+2*j]=1
     
-    #On note comme vue chaque case du champs de vision et ses arrêtes(voir Donnees.py)
-    for i in range(vision[0],vision[1]+1):
-        for j in range(vision[2],vision[3]+1):
-            dn.vus[1+2*i,1+2*j]=1
-            dn.vus[1+2*i,2*j]=1
-            dn.vus[1+2*i,2+2*j]=1
-            dn.vus[2*i,1+2*j]=1
-            dn.vus[2+2*i,1+2*j]=1
+    else:           #Dans un couloir, on voit à un peu plus d'une case cases
+    
+        for i in range(6):
+            for j in range(6):
+                if i not in [0,6] or j not in [0,6]:
+                    dn.vus[1+2*dn.joueur[0]-5+i+j,1+2*dn.joueur[1]+i-j]=1
     
     #Actualiser les graphismes
     gr.afficher_ecran(screen,vision)
@@ -138,5 +144,7 @@ while not done:
     clock.tick(10)
 
 #Pour fermer la fenêtre si l'on clique sur le bouton, très important.
+pygame.display.quit()
 pygame.quit()
+
 
