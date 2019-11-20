@@ -58,7 +58,7 @@ Etat du jeu et mises à jour:
 
 20/11/2019:
 
--à cause des dernières modifications, lancer le jeu est plus complexes qu'avant. Veuillez relire le README pour plus de détails.
+-à cause des dernières modifications, lancer le jeu est plus complexe qu'avant. Veuillez relire le README pour plus de détails.
 
 -le fichier font a été ajouté pour pouvoir écrire des messages, à l'aide du dossier Alphabet. Je n'ai pas utilisé un véritable font car cela provoquait de nombreux problèmes lors de l'exécution (sortie de kernel, disparition de variables sur relances multiples,...). J'avais déjà utilisé cette méthode dans un autre projet, aussi je n'ai eu qu'à réccupérer les images.
 
