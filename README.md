@@ -5,10 +5,9 @@ J'ai choisi cette série de jeux car c'est une série que j'adore, et dont je co
 J'ai fait assez peu de recherche pour ce travail, car mon but est surtout de trouver une approche pour implémenter ce jeu.
 
 Pour l'instant, mes sources extérieures se limitent à:
--https://www.pygame.org/docs/
-pour l'utilisation du module pygame
--https://gamedevelopment.tutsplus.com/tutorials/how-to-use-bsp-trees-to-generate-game-maps--gamedev-12268
-pour la génération d'étage, problème auquel je n'ai pas trouvé de solution seul.
+
+-https://www.pygame.org/docs/ pour l'utilisation du module pygame
+-https://gamedevelopment.tutsplus.com/tutorials/how-to-use-bsp-trees-to-generate-game-maps--gamedev-12268 pour la génération d'étage, problème auquel je n'ai pas trouvé de solution seul.
 
 Le concept de mon jeu est le suivant: un personnage se déplace dans un donjon généré aléatoirement.
 A chaque étage, il y a un escalier permettant d'accéder à l'étage suivant, et des ennemis.
@@ -21,10 +20,15 @@ De plus, sa simplicité de lecture me permet de me concentrer sur l'aspect algor
 J'utilise Pyzo comme environnement de travail.
 
 -Pour lancer le jeu, il faut:
+
   -télécharger tout les fichiers ici présent dans un même dossier (disons "Jeu").
+  
   -placer le dossier "Alphabet" dans un dossier parent "Images".
+  
   -Mettre l'addresse du dossier "Jeu" dans la variable "dossier" du fichier "Donnees.py" (penser à doubler les \ pour éviter que l'IDE y voit des commandes).
+  
     -lancer la commande 'pip install -r requirements.txt' si besoin pour installer les bibliothèques nécessaires.
+    
     -lancer le fichier "Main.py".
 
 -dans le fichier 'Main.py', j'utilise la fonction os.chdir pour indiquer à mon IDE où travailler.
