@@ -54,3 +54,16 @@ Etat du jeu et mises à jour:
 -Il y a aussi 2 ennemis qui suivent le joueur s'ils le voient.
 
 -Les graphismes sont très simples: carrés pour les cases, ronds pour les personnages, et une mini-carte de l'étage en cours (ce qui a déjà été découvert).
+
+
+20/11/2019:
+
+-à cause des dernières modifications, lancer le jeu est plus complexes qu'avant. Veuillez relire le README pour plus de détails.
+
+-le fichier font a été ajouté pour pouvoir écrire des messages, à l'aide du dossier Alphabet. Je n'ai pas utilisé un véritable font car cela provoquait de nombreux problèmes lors de l'exécution (sortie de kernel, disparition de variables sur relances multiples,...). J'avais déjà utilisé cette méthode dans un autre projet, aussi je n'ai eu qu'à réccupérer les images.
+
+-le numéro de l'étage en cours est affiché en bas à gauche de l'écran.
+
+-la fonction 'afficher_ecran' de 'Graphismes.py' a été séparées en plusieurs sous-fonctions selon l'objet à afficher, dans l'optique de l'implémentation de sprites.
+
+-le champs de vision (variable vision) perçu en couloir a été modifié: le joueur ne voit plus toutes les arrêtes d'un carrés de 5 par 5 centré sur lui. Le joueur peut voir 'à deux arrêtes de distances': il voit les arrêtes qu'il touche (distance 0), celles qui touchent ces arrêtes-là (distance 1) et celles qui touchent les précédentes (distance 2).
