@@ -21,13 +21,16 @@ De plus, sa simplicité de lecture me permet de me concentrer sur l'aspect algor
 J'utilise Pyzo comme environnement de travail.
 
 -Pour lancer le jeu, il faut:
-  -télécharger tout les fichiers ici présent dans un même dossier
-  -
-Il suffit donc de le lire dans un IDE python pour lancer le jeu (après avoir installé les librairies nécessaires avec la commande 'pip install -r requirements.txt').
+  -télécharger tout les fichiers ici présent dans un même dossier (disons "Jeu").
+  -placer le dossier "Alphabet" dans un dossier parent "Images".
+  -Mettre l'addresse du dossier "Jeu" dans la variable "dossier" du fichier "Donnees.py" (penser à doubler les \ pour éviter que l'IDE y voit des commandes).
+    -lancer la commande 'pip install -r requirements.txt' si besoin pour installer les bibliothèques nécessaires.
+    -lancer le fichier "Main.py".
 
--dans le fichier 'Visualisation IA.py', l'utilisation de la fonction os.chdir n'est pas toujours nécessaire selon l'environnement de travail.
-Je l'utilise car sinon le programme ne se lance pas toujours sur mon ordinateur.
-A modifier selon vos besoins ou préférences avec le chemin du dossier contenant tous les fichiers '.py'.
+-dans le fichier 'Main.py', j'utilise la fonction os.chdir pour indiquer à mon IDE où travailler.
+Elle n'est pas toujours nécessaire selon l'IDE où l'ordinateur.
+Si le jeu ne démarre pas car le programme ne connait pas les autres fichiers, il faut mettre l'addresse du dossier contenant tous les fichiers .py.
+N'utilisez pas Donnees.dossier car ce fichier n'a pas encore été lu à cette étape du code.
 
 -Le document 'Organisation des données.txt' réunit la description des différents raccourcis utilisés pour transmettre des données.
 Par exemple, il permet d'interpréter la carte sous forme de grille de chiffre.
