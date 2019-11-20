@@ -1,7 +1,11 @@
 import numpy as np
 
+
 #Ce fichier doit contenir toutes les variables globales utilisées, qu'elles soient constantes ou variable.
 #Il ne les contient pas encore toutes car les tests sont plus simples avec des variables dans les fichiers concernés. Je les déplace au fur et à mesure que le projet avance.
+
+#dossier contient le chemin du dossier de mon jeux. Il est plus simple de le stocker ici que de le réécrire à chaque fois que je souhaite chercher une ressource
+dossier="C:\\Users\\User\\Documents\\Programmes perso\\Donjon mystère\\"
 
 ##Constantes
 #Ces variables indiquent la taille de la carte
@@ -25,6 +29,10 @@ BEIGE    = ( 230, 200, 100)
 
 #palette contient la palette du donjon, à savoir la couleur des murs et du sol
 palette=[GREEN,BEIGE]
+
+#sprites est censé contenir les sprites de chaque type de personnage. Pour l'instant, ils sont identifiés par des couleurs
+sprites={"joueur":YELLOW, "ennemi":RED}
+
 
 ##Variables (valeurs de test)
 #Les valeurs écrites ici sont à titre indicatif, les vraies valeurs sont dans l'initialisation (dans IA.py).
@@ -110,3 +118,6 @@ ennemis=[[[3,3],[0,0],[-1,-1]],[[3,22],[0,0],[-1,-1]]]
 
 #joueur contient les infos du joueur, à savoir sa position (pour l'instant).
 joueur=[17,3]
+
+#etage correspond au numéro de l'étage en cours.
+etage=1
