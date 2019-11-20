@@ -20,7 +20,9 @@ Remarques:
 De plus, sa simplicité de lecture me permet de me concentrer sur l'aspect algorithmique du projet.
 J'utilise Pyzo comme environnement de travail.
 
--le fichier 'Visualisation IA.py' sert de main, il avait un but plus spécifique au départ mais j'ai fini par y intégrer la boucle principale.
+-Pour lancer le jeu, il faut:
+  -télécharger tout les fichiers ici présent dans un même dossier
+  -
 Il suffit donc de le lire dans un IDE python pour lancer le jeu (après avoir installé les librairies nécessaires avec la commande 'pip install -r requirements.txt').
 
 -dans le fichier 'Visualisation IA.py', l'utilisation de la fonction os.chdir n'est pas toujours nécessaire selon l'environnement de travail.
