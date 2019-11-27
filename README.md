@@ -33,7 +33,7 @@ J'utilise Pyzo comme environnement de travail.
 
 -dans le fichier 'Main.py', j'utilise la fonction os.chdir pour indiquer à mon IDE où travailler.
 Elle n'est pas toujours nécessaire selon l'IDE où l'ordinateur.
-Si le jeu ne démarre pas car le programme ne connait pas les autres fichiers, il faut mettre l'addresse du dossier contenant tous les fichiers .py.
+Si le jeu ne démarre pas car le programme ne connait pas les autres fichiers, il faut mettre l'adresse du dossier contenant tous les fichiers .py.
 N'utilisez pas Donnees.dossier car ce fichier n'a pas encore été lu à cette étape du code.
 
 -Le document 'Organisation des données.txt' réunit la description des différents raccourcis utilisés pour transmettre des données.
