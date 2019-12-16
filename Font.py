@@ -77,10 +77,14 @@ font["è"]=pygame.image.load(dn.dossier+"Images\\Alphabet\\è.png").convert()
 font[" "]=pygame.image.load(dn.dossier+"Images\\Alphabet\\espace.png").convert()
 
 for s in font:
-    font[s].set_colorkey(dn.BLACK)
+    font[s].set_colorkey(dn.BACK)
 
-def tracer_message(screen,message,x,y):
+def tracer_message(screen,message,size,x,y):
+    #fait apparaitre le message à l'endroit et la taille (en proportion) indiqué
     x_im, y_im=x,y
+    
     for c in message:
-        screen.blit(font[c],[x_im,y_im])
-        x_im+=font[c].get_width()+4
+        width, height=int(font[c].get_width()*size), int(font[c].get_height()*size)
+        lettre=pygame.transform.scale(font[c], (width, height))
+        screen.blit(lettre,[x_im,y_im])
+        x_im+=lettre.get_width()+4
