@@ -2,6 +2,7 @@ import numpy as np
 import random as rd
 import Donnees as dn
 import Map_generator as mg
+import Sprites as sp
 
 ##IA
 #Rq: pour désigner un PNJ (allié ou ennemi), j'utilise pion. Pour le joueur, j'utilise personnage ou joueur. Ennemi est à comprendre en contexte, selon le point de vue.
@@ -36,42 +37,42 @@ def prio_mouvement(ennemi):
     if abs(delta_x)>abs(delta_y):           #Par exemple, si la cible est plus loin horizontalement que verticalement,
         if delta_x>0:                       #Qu'elle est à gauche
             if delta_y>0:                   #Et au-dessus,
-                return [[haut],[gauche],[droite],[bas]]     #Alors la priorité est celle-ci
+                return [[haut],[gauche]]     #Alors la priorité est celle-ci
             elif delta_y<0:
-                return [[haut],[droite],[gauche],[bas]]
+                return [[haut],[droite]]
             else:
-                return [[haut],[droite,gauche],[bas]]       #Si deux actions sont équivalentes (en terme de distance à la cible), elles ont la même priorité
+                return [[haut]]       #Si deux actions sont équivalentes (en terme de distance à la cible), elles ont la même priorité
         elif delta_x<0:
             if delta_y>0:
-                return [[bas],[gauche],[droite],[haut]]
+                return [[bas],[gauche]]
             elif delta_y<0:
-                return [[bas],[droite],[gauche],[haut]]
+                return [[bas],[droite]]
             else:
-                return [[bas],[droite,gauche],[haut]]
+                return [[bas]]
     elif abs(delta_x)<abs(delta_y):
         if delta_y>0:
             if delta_x>0:
-                return [[gauche],[haut],[bas],[droite]]
+                return [[gauche],[haut]]
             elif delta_x<0:
-                return [[gauche],[bas],[haut],[droite]]
+                return [[gauche],[bas]]
             else:
-                return [[gauche],[haut,bas],[droite]]
+                return [[gauche]]
         elif delta_y<0:
             if delta_x>0:
-                return [[droite],[haut],[bas],[gauche]]
+                return [[droite],[haut]]
             elif delta_x<0:
-                return [[droite],[bas],[haut],[gauche]]
+                return [[droite],[bas]]
             else:
-                return [[droite],[bas,haut],[gauche]]
+                return [[droite]]
     else:
         if delta_x>0 and delta_y>0:
-            return [[gauche,haut],[bas,droite]]
+            return [[gauche,haut]]
         elif delta_x>0 and delta_y<0:
-            return [[droite,haut],[bas,gauche]]
+            return [[droite,haut]]
         elif delta_x<0 and delta_y>0:
-            return [[gauche,bas],[haut,droite]]
+            return [[gauche,bas]]
         elif delta_x<0 and delta_y<0:
-            return [[droite,bas],[haut,gauche]]
+            return [[droite,bas]]
     
 
 #Cette fonction détermine pour un ennemi donné l'action qu'il doit faire
@@ -105,7 +106,7 @@ def choix_action(ennemi):
     vision=dn.grille[x1:x2+1,y1:y2+1]
     
     
-    #étape 3, en salle: si des ennemis est là, le pion se dirige vers l'ennemi le plus proche. Sinon, il va vers une sortie, si possible différente de celle dont il vient
+    #étape 3, en salle: si des ennemis sont là, le pion se dirige vers l'ennemi le plus proche. Sinon, il va vers une sortie, si possible différente de celle dont il vient
     if salle:
         ennemis=[]
         sorties=[]
@@ -117,7 +118,7 @@ def choix_action(ennemi):
                 if (i==0 or j==0 or i==x2-x1 or j==y2-y1) and vision[i,j]:
                     sorties.append((i+x1,j+y1))
         
-        #Si des ennemis est là (pour l'instant le personnage), il désigne le plus proche comme une cible.
+        #Si des ennemis sont là (pour l'instant le personnage), il désigne le plus proche comme une cible.
         if ennemis:
             cible=0
             distance=abs(x-ennemis[0][0])+abs(y-ennemis[0][1])
@@ -198,27 +199,37 @@ def suivre_instruction(ennemi,instruction):
     
     #Si l'instruction est un mouvement, on modifie la grille et les informations du pion
     if instruction[0]=='x':
+        dn.ennemis[ennemi]["etat"]="walk"
         if instruction[1]=='+':
             dn.grille[x][y]=dn.grille_vide[x][y]
             dn.grille[x+1][y]=5
             x,x_prec=x+1,x
             y_prec=y
+            dn.ennemis[ennemi]["direction"]="down"
         else:
             dn.grille[x][y]=dn.grille_vide[x][y]
             dn.grille[x-1][y]=5
             x,x_prec=x-1,x
             y_prec=y
+            dn.ennemis[ennemi]["direction"]="up"
     elif instruction[0]=='y':
+        dn.ennemis[ennemi]["etat"]="walk"
         if instruction[1]=='+':
             dn.grille[x][y]=dn.grille_vide[x][y]
             dn.grille[x][y+1]=5
             y,y_prec=y+1,y
             x_prec=x
+            dn.ennemis[ennemi]["direction"]="right"
         else:
             dn.grille[x][y]=dn.grille_vide[x][y]
             dn.grille[x][y-1]=5
             y,y_prec=y-1,y
             x_prec=x
+            dn.ennemis[ennemi]["direction"]="left"
+    
+    elif instruction[0]=='r':
+        dn.ennemis[ennemi]["etat"]="still"
+        dn.ennemis[ennemi]["horloge"]=0
     
     dn.ennemis[ennemi][0]=[x,y]
     dn.ennemis[ennemi][1]=[x_prec,y_prec]
@@ -248,3 +259,6 @@ def init():
                     
     #vus est une carte des zones entrées au moins une fois dans le champs de vision. Il sert à savoir quelle partie de la mini-map révéler
     dn.vus=np.zeros((2*(dn.width_map+1+3),2*(dn.height_map+1+3)))
+    
+    dn.joueur["direction"]="down"
+    dn.joueur["etat"]="still"
