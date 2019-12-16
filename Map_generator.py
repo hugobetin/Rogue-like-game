@@ -185,7 +185,7 @@ def placer_joueur(root,carte):
     x=rd.randint(salle[0],salle[0]+salle[2]-1)
     y=rd.randint(salle[1],salle[1]+salle[3]-1)
     carte[x,y]=4
-    dn.joueur=[x+2,y+2]
+    dn.joueur["position"]=[x+2,y+2]
 
 """
 placer_joueur(root,carte)
@@ -205,7 +205,7 @@ def placer_ennemis(root,carte,nombre_ennemis):
             x=rd.randint(salle[0],salle[0]+salle[2]-1)
             y=rd.randint(salle[1],salle[1]+salle[3]-1)
         carte[x,y]=5
-        dn.ennemis.append([[x+2,y+2],[0,0],[-1,-1]])
+        dn.ennemis.append({0:[x+2,y+2],1:[0,0],2:[-1,-1],"direction":"down", "type":"gobelin","etat":"still","horloge":0})
 
 """
 placer_ennemis(root,carte,2)
