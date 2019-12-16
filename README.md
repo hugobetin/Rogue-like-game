@@ -23,8 +23,6 @@ J'utilise Pyzo comme environnement de travail.
 
   *télécharger tout les fichiers ici présent dans un même dossier (disons "Jeu").
   
-  *placer le dossier "Alphabet" dans un dossier parent "Images".
-  
   *Mettre l'addresse du dossier "Jeu" dans la variable "dossier" du fichier "Donnees.py" (penser à doubler les \ pour éviter que l'IDE y voit des commandes).
   
   *lancer la commande 'pip install -r requirements.txt' si besoin pour installer les bibliothèques nécessaires.
@@ -32,8 +30,8 @@ J'utilise Pyzo comme environnement de travail.
   *lancer le fichier "Main.py".
 
 -dans le fichier 'Main.py', j'utilise la fonction os.chdir pour indiquer à mon IDE où travailler.
-Elle n'est pas toujours nécessaire selon l'IDE où l'ordinateur.
-Si le jeu ne démarre pas car le programme ne connait pas les autres fichiers, il faut mettre l'adresse du dossier contenant tous les fichiers .py.
+Elle est en commentaire ici car elle n'est pas toujours nécessaire selon l'IDE.
+Si le jeu ne démarre pas car le programme ne connait pas les autres fichiers, il faut mettre l'adresse du dossier "Jeu".
 N'utilisez pas Donnees.dossier car ce fichier n'a pas encore été lu à cette étape du code.
 
 -Le document 'Organisation des données.txt' réunit la description des différents raccourcis utilisés pour transmettre des données.
@@ -51,19 +49,42 @@ Etat du jeu et mises à jour:
 
 -A chaque étage, une carte est créée et le joueur est placé dedans aléatoirement.
 
--Il y a aussi 2 ennemis qui suivent le joueur s'ils le voient.
+-Il y a aussi 2 ennemis qui suivent le joueur s'ils le voient. Ils bloquent le passage du joueur
 
--Les graphismes sont très simples: carrés pour les cases, ronds pour les personnages, et une mini-carte de l'étage en cours (ce qui a déjà été découvert).
+-Une carte de l'étage en cours est en permanence affichée à l'écran, montrant ce qui a déjà été découvert.
 
 
 20/11/2019:
 
--à cause des dernières modifications, lancer le jeu est plus complexe qu'avant. Veuillez relire le README pour plus de détails.
+-Possibilité d'afficher du texte
 
--le fichier 'Font.py' a été ajouté pour pouvoir écrire des messages, à l'aide du dossier Alphabet. Je n'ai pas utilisé un véritable font car cela provoquait de nombreux problèmes lors de l'exécution (sortie de kernel, disparition de variables sur relances multiples,...). J'avais déjà utilisé cette méthode dans un autre projet, aussi je n'ai eu qu'à réccupérer les images.
+-Affichage du numéro d'étage
 
--le numéro de l'étage en cours est affiché en bas à gauche de l'écran.
 
--la fonction 'afficher_ecran' de 'Graphismes.py' a été séparées en plusieurs sous-fonctions selon l'objet à afficher, dans l'optique de l'implémentation de sprites.
+16/12/2019:
 
--le champs de vision (variable vision) perçu en couloir a été modifié: le joueur ne voit plus toutes les arrêtes d'un carrés de 5 par 5 centré sur lui. Le joueur peut voir 'à deux arrêtes de distances': il voit les arrêtes qu'il touche (distance 0), celles qui touchent ces arrêtes-là (distance 1) et celles qui touchent les précédentes (distance 2).
+-J'ai commencé l'implémentation de sprites. Les images que j'utilise/ compte utiliser sont dans le dossier Images. Les sprites déjà présents sont ceux des personnages (joueur et ennemis). Il y a aussi une animation simple.
+
+-Ajout de propriétés sur le joueur et les ennemis: le type (pour les sprites), la direction regardée, l'état (marche, attaque, dommage, rien) et une horloge interne pour gérer les sprites et l'animation.
+
+-Ajout de deux nouvelles actions (besoin d'un pavé numérique): le 1 fait passer son tour, et donc fait défiler le temps; le 2 fait attaquer si un ennemi est juste devant le joueur et le tue.
+
+-Ajout d'un écran titre au lancement, espace pour le passer.
+
+-Modifications mineures visibles: carte agrandie, champs de vision retravaillé, modification de l'IA (plus efficace en cas simple)
+
+-Modifications mineures cachées: distinction BLACK (couleur noire) et BACK (couleur transparente de certains sprites), possibilité de modifier la taille du texte, et quelques autres détails
+
+
+A venir (liste à titre indicative, je peux vouloir tester autre chose entre temps):
+
+-finir l'implémentation des sprites (pour le donjon en lui-même)
+
+-définir des classes. Cette étape va être essentielle afin de simplifier l'implémentation de mécaniques de RPG avec des méthodes
+
+-lisser l'animation: faire en sorte que le personnage glisse d'une case à l'autre au lieu de sauter
+
+-séparer des modes de jeux: un mode "écran titre", un mode "exploration de donjon", un mode "base d'opération", ...
+
+-ajouter de la musique
+
