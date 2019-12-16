@@ -6,6 +6,6 @@ Labels de carte :
 4 :perso
 5 :ennemi
 
-Labels des actions :
+Labels des actions dans IA:
 R : rien
 x/y +/- : avancer/reculer selon l’axe horizontal/ vertical

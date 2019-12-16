@@ -1,4 +1,5 @@
 import numpy as np
+import pygame
 
 
 #Ce fichier doit contenir toutes les variables globales utilisées, qu'elles soient constantes ou variable.
@@ -17,7 +18,8 @@ taille_case=75
 taille_ecran=7
 
 #Voici les couleurs que j'utilise pour l'instant. Elles sont codées en RGB.
-BLACK    = (   0,   0,   0)
+BACK     = (   0,   0,   0)
+BLACK    = (   1,   1,   1)
 WHITE    = ( 255, 255, 255)
 GREY     = ( 124, 124, 124)
 YELLOW   = ( 255, 255,   0)
@@ -26,12 +28,11 @@ GREEN    = (   0, 200,   0)
 L_BLUE   = (   0, 255, 255)
 D_BLUE   = (   0,  90, 180)
 BEIGE    = ( 230, 200, 100)
+ORANGE   = ( 255, 150,   0)
 
 #palette contient la palette du donjon, à savoir la couleur des murs et du sol
 palette=[GREEN,BEIGE]
 
-#sprites est censé contenir les sprites de chaque type de personnage. Pour l'instant, ils sont identifiés par des couleurs
-sprites={"joueur":YELLOW, "ennemi":RED}
 
 
 ##Variables (valeurs de test)
@@ -113,11 +114,21 @@ for i in range(18):
 #vus a le même format que murs. 0 indique une case non-vue, 1 indique une case vue.
 vus=np.zeros((2*25,2*28))
 
-#ennemis contient les infos de chaque ennemi, à savoir sa position, sa position précédente et sa cible du moment (pour l'instant).
-ennemis=[[[3,3],[0,0],[-1,-1]],[[3,22],[0,0],[-1,-1]]]
+#ennemis contient les infos de chaque ennemi, à savoir sa position, sa position précédente, sa cible du moment et sa direction (pour l'instant).
+ennemis=[{0:[3,3],1:[0,0],2:[-1,-1],"direction":"down","type":"gobelin", "etat":"still"},
+        {0:[3,22],1:[0,0],2:[-1,-1],"direction":"down","type":"gobelin", "etat":"still"}]
 
 #joueur contient les infos du joueur, à savoir sa position (pour l'instant).
-joueur=[17,3]
+joueur={}
+joueur["position"]=[17,3]
+joueur["direction"]="down"
+joueur["type"]="loup"
 
+joueur["etat"]="still"    #peut être still, walk, attack, dammage
+joueur["horloge"]=0
+"""
+joueur["dammage"]=False
+joueur["attack"]=False
+"""
 #etage correspond au numéro de l'étage en cours.
 etage=1
