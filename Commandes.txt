@@ -1,0 +1,18 @@
+Ici sont indiquées les commandes par défaut. Vous pouvez les modifier en cherchant event.key dans Main.py.
+Respectez juste la nomenclature pygame.
+
+Touches directionnelles:
+
+Haut: z
+
+Bas: s
+
+Gauche: q
+
+Droite: d
+
+Commandes d'action:
+
+Passer le temps: 1 (pavé numérique)
+
+Attaquer: 2 (pavé numérique)
